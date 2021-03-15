@@ -193,7 +193,7 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         // Create and link a new node
         Node<E> newest = new Node<E>(e, predecessor, successor);
         predecessor.setNext(newest);
-        successor.setPrev(successor);
+        successor.setPrev(newest);
         size ++;
         return newest;
     }
