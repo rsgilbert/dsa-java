@@ -269,10 +269,11 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         Node<E> nextNode = node.getNext();
         prevNode.setNext(nextNode);
         nextNode.setPrev(prevNode);
+        // get removed node
+        E removedElement = node.getElement();
         // convention for defunct node
         node.setNext(null);
         // help with garbage collection
-        E removedElement = node.getElement();
         node.setElement(null);
         node.setPrev(null);
         size--;
