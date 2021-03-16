@@ -8,6 +8,18 @@ import java.util.Comparator;
 
 /**
  * An implementation of a priority with an unsorted list
+ *
+ * Performance:
+ * ---------------------------------------------------------------
+ * | Method                          | Running Time              |
+ * ---------------------------------------------------------------
+ * | size()                          | O(1)                      |
+ * | isEmpty()                       | O(1)                      |
+ * | insert()                        | O(1)                      |
+ * | min                             | O(n)                      |
+ * | removeMin()                     | O(n)                      |
+ * ---------------------------------------------------------------
+ *
  * @param <K> key
  * @param <V> value
  */
