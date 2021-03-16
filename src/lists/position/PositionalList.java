@@ -1,6 +1,8 @@
 package lists.position;
 
 
+import java.util.Iterator;
+
 /**
  * Interface for positional lists
  * @param <E>
@@ -79,5 +81,11 @@ public interface PositionalList<E> {
      * Removes the element stored at Position p and returns it (invalidating p)
      */
     E remove(Position<E> p) throws IllegalArgumentException;
+
+    /**
+     * Returns an iterable representation of the list's positions
+     * @return an iterable of positions
+     */
+    Iterable<Position<E>> positions();
 }
 

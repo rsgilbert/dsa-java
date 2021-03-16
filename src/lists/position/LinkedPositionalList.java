@@ -1,5 +1,8 @@
 package lists.position;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Implementation of a positional list stored as a doubly linked list
  *
@@ -276,4 +279,73 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         return removedElement;
     }
 
+    // ---------------- nested PositionIterator class ---------------------------
+    private class PositionIterator implements Iterator<Position<E>> {
+        // position of the next element to report
+        private Position<E> cursor = first();
+        // position of last reported element
+        private Position<E> recent = null;
+
+        /**
+         * Tests whether the iterator has a next object
+         */
+        public boolean hasNext() { return (cursor != null); }
+        /**
+         * Returns the next position in the iterator
+         */
+        public Position<E> next() throws NoSuchElementException {
+            if(cursor == null) throw new NoSuchElementException("Nothing left");
+            // element at this position might later be removed
+            recent = cursor;
+            cursor = after(cursor);
+            return recent;
+        }
+        /**
+         * Remove the element returned by the most recent call to next
+         */
+        public void remove() throws IllegalStateException {
+            if(recent == null) throw new IllegalStateException("Nothing to remove");
+            // remove from outer list
+            LinkedPositionalList.this.remove(recent);
+            // Do not allow remove again until next is called
+            recent = null;
+        }
+    }
+    // ---------------------- end of nested PositionIterator class -------------------
+
+    // --------------------- nested PositionIterable class --------------------------
+    private class PositionIterable implements Iterable<Position<E>> {
+        public Iterator<Position<E>> iterator() { return new PositionIterator(); }
+    }
+    // -------------------- end of nested PositionIterable class --------------------
+
+    /**
+     * Returns an iterable representation of the list's positions
+     * @return new instance of PositionIterable
+     */
+    public Iterable<Position<E>> positions() {
+        // creates a new instance of the new PositionIterable class
+        return new PositionIterable();
+    }
+
+    //  ---------------- nested ElementIterator class ----------
+    /**
+     * This class adapts the iteration produced by positions to return elements
+     */
+    private class ElementIterator implements Iterator<E> {
+        Iterator<Position<E>> positionIterator = new PositionIterator();
+        public boolean hasNext() { return positionIterator.hasNext(); }
+        public E next() { return positionIterator.next().getElement(); }
+        public void remove() {
+            positionIterator.remove();
+        }
+    }
+
+    // ------------- end of nested ElementIterator class ---------
+
+    /**
+     * Returns an iterator that iterates over elements
+     * @return an iterator that iterates over elements
+     */
+    public Iterator<E> iterator() { return new ElementIterator(); }
 }
