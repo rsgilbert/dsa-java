@@ -26,6 +26,27 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
      */
     public HeapPriorityQueue(Comparator<K> comp) { super(comp); }
 
+    /**
+     * Creates a priority queue initialized with the given key-value pairs
+     * @param keys array of keys
+     * @param values array of values
+     * @throws IllegalArgumentException
+     */
+    public HeapPriorityQueue(K[] keys, V[] values) throws IllegalArgumentException{
+        // Set default comparator
+        super();
+        if(keys.length != values.length) {
+            throw new IllegalArgumentException("Keys and value must have the same length");
+        }
+        // Add all key-value pairs as Entries to heap
+        for(int j = 0; j < keys.length; j++) {
+            heap.add(new PQEntry<>(keys[j], values[j]));
+        }
+        // Establish the heap ordering
+        heapify();
+
+    }
+
     // ----------------- protected utilities -------------------------------
 
     /**
@@ -151,6 +172,31 @@ public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
             childIdx = minimumChild(parentIdx);
         }
     }
+
+    /**
+     * Performs a bottom up construction of the heap
+     */
+    public void heapify() {
+        // Start at parent of last index
+        // In so doing, you exclude processing the leaves
+        int startIdx = parent(size() - 1);
+        // loop until processing the loop
+        for(int j = startIdx; j>= 0; j--) {
+            downheap(j);
+        }
+    }
+
+    /**
+     * Perform a top down construction of the heap
+     */
+    public void heapifyReverse() {
+        // Start at root and go to bottom
+        for(int j = 0; j < size(); j++) {
+            upheap(j);
+        }
+    }
+
+    // ----------------- End of protected utilities ----------------------
 
     /**
      * Returns the number of entries in priority queue
