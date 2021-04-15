@@ -94,4 +94,5 @@ public class UnsortedPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
      * @return number of items in the priority queue
      */
     public int size() { return list.size(); }
+
 }
