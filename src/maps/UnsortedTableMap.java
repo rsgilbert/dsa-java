@@ -9,6 +9,14 @@ import java.util.NoSuchElementException;
  * A very simple concrete implementation of the map ADT that relies
  * on storing key-value pairs in arbitrary order within a Java ArrayList
  *
+ *
+ * Running time
+ * get(k)     : O(n)
+ * put(k, v)  : O(n)
+ * remove(k)  : O(n)
+ * entrySet() : O(1)
+ * size()     : O(1)
+ *
  * @param <K> key
  * @param <V> value
  */

@@ -5,6 +5,12 @@ import java.util.Iterator;
 
 /**
  * Base class that provides the functionality that is shared by all of our map implementations
+ *
+ * Running time
+ * isEmpty() : O(1)
+ * keySet()  : O(1)
+ * values()  : O(1)
+ *
  * @param <K> Key
  * @param <V> Value
  */
