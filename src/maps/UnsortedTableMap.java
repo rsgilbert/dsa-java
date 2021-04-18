@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  * get(k)     : O(n)
  * put(k, v)  : O(n)
  * remove(k)  : O(n)
- * entrySet() : O(1)
+ * entrySet() : O(n)
  * size()     : O(1)
  *
  * @param <K> key

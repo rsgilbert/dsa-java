@@ -7,6 +7,11 @@ import java.util.Random;
  * Java Hash Table implementation
  * Provides functionality common to implementations that use separate chaining
  * and implementations that use open addressing with linear probing
+ *
+ * Expected running time
+ * get    : O(1)
+ * put    : O(1)
+ * remove : O(1)
  * @param <K> Key
  * @param <V> Value
  */
@@ -20,11 +25,16 @@ public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
     // shift and scaling factors
     private long scale, shift;
 
+    /**
+     * Initializes capacity, prime, scale and shift and then creates the hash table
+     * @param cap capacity
+     * @param p prime
+     */
     public AbstractHashMap(int cap, int p) {
-        prime = p;
         capacity = cap;
         // For compress function
         // @see compressFn
+        prime = p;
         Random rand = new Random();
         scale = rand.nextInt(prime - 1) + 1;
         shift = rand.nextInt(prime);

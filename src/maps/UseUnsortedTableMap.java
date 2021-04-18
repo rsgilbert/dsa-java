@@ -9,8 +9,11 @@ public class UseUnsortedTableMap {
          */
 
         // Test by performing wordCount using UnsortedTableMap
-        wordCount(new UnsortedTableMap<>());
+       // wordCount(new UnsortedTableMap<>());
 
+        // Test ChainHashMap using wordCount
+        System.out.println("*** ChainHashMap ***");
+        wordCount(new ChainHashMap<>());
     }
 
     public static void wordCount(Map<String, Integer> f) {

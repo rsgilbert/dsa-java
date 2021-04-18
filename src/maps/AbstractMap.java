@@ -8,8 +8,8 @@ import java.util.Iterator;
  *
  * Running time
  * isEmpty() : O(1)
- * keySet()  : O(1)
- * values()  : O(1)
+ * keySet()  : O(n)
+ * values()  : O(n)
  *
  * @param <K> Key
  * @param <V> Value
