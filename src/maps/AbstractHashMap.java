@@ -23,6 +23,8 @@ public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
     public AbstractHashMap(int cap, int p) {
         prime = p;
         capacity = cap;
+        // For compress function
+        // @see compressFn
         Random rand = new Random();
         scale = rand.nextInt(prime - 1) + 1;
         shift = rand.nextInt(prime);
@@ -64,11 +66,27 @@ public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
         return compressFn(hashCodeFn(key));
     }
     // - hash function utilities -
+    /**
+     * HashCode function
+     * Relies on the built-in/default hash code function for objects
+     * @param key key
+     * @return hashCode of key
+     */
     private int hashCodeFn(K key) {
-        return (int) Math.abs(key.hashCode() * scale + shift) % prime;
+        return key.hashCode();
     }
+    /**
+     * Compression function.
+     * Maps an integer hashCode into the range [0, capacity-1]
+     * Minimizes number of collisions for a given set of distinct hash codes
+     * Uses the MAD method (Multiply-Add-and-Divide)
+     * MAD = [(ai + b) mod p] mod N, Goodrich pg 416
+     * prime is a prime number larger than n
+     * scale and shift are random numbers in the range [0, prime - 1], scale is greater than 0
+     * @return hash value
+     */
     private int compressFn(int hashCode) {
-        return hashCode % capacity;
+        return (int) ((Math.abs(hashCode() * scale + shift) % prime) % capacity);
     }
     // - end of hash function utilities -
 
