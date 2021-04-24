@@ -7,6 +7,9 @@ import java.util.Random;
  * Java Hash Table implementation
  * Provides functionality common to implementations that use separate chaining
  * and implementations that use open addressing with linear probing
+ * Mainly deals with calculating the hash value for a given key and resizing
+ * the hash map when a certain condition is met which is usually when the table
+ * hits a particular size to capacity ratio
  *
  * Expected running time
  * get    : O(1)

@@ -12,8 +12,12 @@ public class UseUnsortedTableMap {
        // wordCount(new UnsortedTableMap<>());
 
         // Test ChainHashMap using wordCount
-        System.out.println("*** ChainHashMap ***");
-        wordCount(new ChainHashMap<>());
+//        System.out.println("*** ChainHashMap ***");
+//        wordCount(new ChainHashMap<>());
+
+        // Test ProbeHashMap using wordCount
+        System.out.println("*** ProbeHashMap ***");
+        wordCount(new ProbeHashMap<>());
     }
 
     public static void wordCount(Map<String, Integer> f) {
@@ -41,7 +45,7 @@ public class UseUnsortedTableMap {
                 maxWord = ent.getKey();
             }
 
-        System.out.println("The most frequent word is " + maxWord);
-        System.out.println("Max count is " + maxCount);
+        System.out.println("The most frequent word is \"" + maxWord + "\"");
+        System.out.println("Max count is: " + maxCount);
     }
 }
