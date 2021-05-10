@@ -62,7 +62,7 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
         if (high < low)
             // by convention, no entry qualifies
             // Occurs when high + 1 == low
-            return high + 1;
+            return high + 1; // or low
         int mid = (low + high) / 2;
         int comp = compare(key, table.get(mid));
         if (comp == 0)
@@ -194,6 +194,7 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
 
     /**
      * Returns the entry with greatest key less or equal to given key if any
+     *
      * @param key
      * @return entry with greatest key less or equal to given key if any
      */
@@ -219,6 +220,9 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
 
     /**
      * Return the entry with smallest key strictly greater than given key
+     *
+     * Running time: O(log n)
+     *
      * @param key
      * @return entry with smallest key strictly greater than given key
      */
