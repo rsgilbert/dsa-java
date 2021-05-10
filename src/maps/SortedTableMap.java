@@ -12,6 +12,18 @@ import java.util.List;
  * Concrete implementation of the SortedTableMap that supports the sorted map ADT
  * Includes the findIndex utility method that uses the recursive binary search algorithm to return
  * the index of the leftmost entry in the search range having key greater than or equal to k
+ *
+ *
+ * Running time
+ * size: O(1)
+ * get : O(logn)
+ * put : O(n); O(log n) if map has entry with given key
+ * remove : O(n)
+ * firstEntry, lastEntry: O(1)
+ * ceilingEntry, floorEntry, lowerEntry, higherEntry : O(log n)
+ * subMap : O(s + log n)
+ * entrySet, keySet, values : O(n)
+ *
  */
 public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
     private ArrayList<MapEntry<K, V>> table = new ArrayList<>();
