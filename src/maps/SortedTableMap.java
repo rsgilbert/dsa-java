@@ -5,6 +5,8 @@ import com.sun.xml.internal.bind.v2.TODO;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Concrete implementation of the SortedTableMap that supports the sorted map ADT
@@ -47,7 +49,7 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
     private int findIndex(K key, int low, int high) {
         if (high < low)
             // by convention, no entry qualifies
-            // most likely high + 1 == low
+            // Occurs when high + 1 == low
             return high + 1;
         int mid = (low + high) / 2;
         int comp = compare(key, table.get(mid));
@@ -78,6 +80,23 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
         return table.get(idx);
     }
 
+    /**
+     * Support for snapshot iterators for entrySet() and subMap()
+     * Returns an iterable of entries beginning with entry at startIndex of table upto entry with largest key less than stop key
+     * @param startIndex index of table from which to start the iterable
+     * @param stop smallest key outside snapshot range
+     * @return iterable of entries from entry at startIndex of table to entry with largest key less than stop key
+     */
+    private Iterable<Entry<K,V>> snapshot(int startIndex, K stop) {
+        List<Entry<K,V>> buffer = new ArrayList<>();
+        int idx = startIndex;
+        while(idx < table.size() &&
+                (stop == null || compare(stop, table.get(idx)) > 0)) {
+            buffer.add(table.get(idx++));
+        }
+        return buffer;
+    }
+
     // -- end of utility functions --
 
     /**
@@ -101,6 +120,8 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
             return null;
         return table.get(idx).getValue();
     }
+
+    // - map functions -
 
     /**
      * Associate a given value with a given key returning any overridden value
@@ -131,5 +152,86 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
         return null;
     }
 
-    // TODO continue from firstEntry method
+    // - end of map functions -
+
+    // - Methods specific to sorted map -
+    /**
+     * Returns the entry having the least key or null if map is empty
+     * @return entry with least key or null if map is empty
+     */
+    public Entry<K,V> firstEntry() {
+        return safeEntry(0);
+    }
+
+    /**
+     * Returns entry having the greatest key or null if map is entry
+     * @return entry with greatest key or null if map is empty
+     */
+    public Entry<K,V> lastEntry() {
+        return safeEntry(table.size() - 1);
+    }
+
+    /**
+     * Returns entry with least key greater than or equal to given key if any
+     * @param key key
+     * @return entry with least key greater than or equal to given key if any
+     */
+    public Entry<K,V> ceilingEntry(K key) {
+        return safeEntry(findIndex(key));
+    }
+
+    /**
+     * Returns the entry with greatest key less or equal to given key if any
+     * @param key
+     * @return entry with greatest key less or equal to given key if any
+     */
+    public Entry<K,V> floorEntry(K key) {
+        int ceilIdx = findIndex(key);
+
+        // If we do not get a match, we take the entry one index lower
+        if(ceilIdx == table.size() || !table.get(ceilIdx).getKey().equals(key))
+            ceilIdx --;
+
+        return safeEntry(ceilIdx);
+    }
+
+    /**
+     * Returns the entry with greatest key strictly less than given key (if any)
+     * @param key
+     * @return entry with greatest key strictly less that given key if any
+     */
+    public Entry<K,V> lowerEntry(K key) {
+        // go strictly below the ceiling entry
+        return safeEntry(findIndex(key) - 1);
+    }
+
+    /**
+     * Return the entry with smallest key strictly greater than given key
+     * @param key
+     * @return entry with smallest key strictly greater than given key
+     */
+    public Entry<K,V> higherEntry(K key) {
+        int ceilIdx = findIndex(key);
+        Entry<K,V> ceilEntry = safeEntry(ceilIdx);
+        if(ceilIdx < size() && table.get(ceilIdx).getKey().equals(key))
+            ceilIdx ++;
+        return safeEntry(ceilIdx);
+    }
+
+    /**
+     * Returns an iterable of all the entries in the sorted map
+     * @return an iterable of all entries n the sorted map
+     */
+    public Iterable<Entry<K,V>> entrySet() {return snapshot(0, null);}
+
+    /**
+     * Returns a snapshot of entries in sorted order from the fromKey to and excluding the toKey
+     * @return A sorted iterable of entrie from a given fromKey to the given toKey
+     */
+    public Iterable<Entry<K,V>> subMap(K fromKey, K toKey) {
+        return snapshot(findIndex(fromKey), toKey);
+    }
+
+
+    // - end of methods specific to sorted map -
 }

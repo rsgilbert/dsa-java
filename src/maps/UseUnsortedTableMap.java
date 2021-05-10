@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 public class UseUnsortedTableMap {
     public static void main(String[] args) {
-        /**
-         * Test the implementation of UnsortedTableMap by using it
-         */
-
         // Test by performing wordCount using UnsortedTableMap
        // wordCount(new UnsortedTableMap<>());
 
@@ -16,8 +12,12 @@ public class UseUnsortedTableMap {
 //        wordCount(new ChainHashMap<>());
 
         // Test ProbeHashMap using wordCount
-        System.out.println("*** ProbeHashMap ***");
-        wordCount(new ProbeHashMap<>());
+//        System.out.println("*** ProbeHashMap ***");
+//        wordCount(new ProbeHashMap<>());
+
+        // Test SortedTableMap using wordCount
+        System.out.println("*** SortedTableMap ***");
+        wordCount(new SortedTableMap<>());
     }
 
     public static void wordCount(Map<String, Integer> f) {
