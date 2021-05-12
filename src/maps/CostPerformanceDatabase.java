@@ -29,7 +29,7 @@ public class CostPerformanceDatabase {
     /**
      * Adds a new entry with given cost and performance
      *
-     * Running time (worst case): O(n), bottleneck is on the map.put call
+     * Running time (worst case): O(n), bottleneck is on the map.put and map.remove calls
      *
      * @param c cost
      * @param p performance
@@ -39,11 +39,11 @@ public class CostPerformanceDatabase {
         // If performance of floor is as good as p, ignore
         if(floor != null && floor.getValue() >= p) // Although based on our SortedTableMap implementation, floor can never be null
             return;
-        map.put(c, p); // bottleneck, performs in O(n) for new entry
+        map.put(c, p); // bottleneck 1, performs in O(n) for new entry
         // Remove any entries dominated by the new entry
         Entry<Integer, Integer> entry = map.higherEntry(c);
         while(entry != null && entry.getValue() <= p) {
-            map.remove(entry.getKey());
+            map.remove(entry.getKey());  // bottleneck 2, performs in O(n) for new entry
             entry = map.higherEntry(c);
         }
     }
