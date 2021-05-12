@@ -1,5 +1,7 @@
 package lists.position;
 
+import util.Position;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

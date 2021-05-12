@@ -1,4 +1,4 @@
-package lists.position;
+package util;
 
 /**
  * Interface for Position
@@ -13,3 +13,4 @@ public interface Position<E> {
      */
     E getElement() throws IllegalStateException;
 }
+

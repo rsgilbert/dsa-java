@@ -1,7 +1,7 @@
 package lists.position;
 
 
-import java.util.Iterator;
+import util.Position;
 
 /**
  * Interface for positional lists

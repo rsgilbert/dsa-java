@@ -1,7 +1,7 @@
 package priorityqueue;
 
 import lists.position.LinkedPositionalList;
-import lists.position.Position;
+import util.Position;
 import lists.position.PositionalList;
 
 import java.util.Comparator;
