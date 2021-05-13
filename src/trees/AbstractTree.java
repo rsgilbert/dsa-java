@@ -3,7 +3,9 @@ package trees;
 
 import util.Position;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * An abstract class providing some functionality of the Tree interface
@@ -69,5 +71,42 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     @Override
     public Iterator<E> iterator() { return new ElementIterator(); }
+
+    /**
+     * Defining preorder as the default traversal algorithm
+     * @return iterable
+     */
+    @Override
+    public Iterable<Position<E>> positions() { return preorder(); }
+
+
+    // -- Traversal algorithms --
+    /**
+     * Utility method. Adds positions of the subtree rooted at Position p to the given snapshot
+     * Preorder: Add position p before exploring subtrees
+     */
+    private void preorderSubtree(Position<E> p, List<Position<E>> snapshot) {
+        snapshot.add(p);
+        /**
+         * Implicit base case: The for loop body never executes when the position has
+         * no children
+         */
+        for(Position<E> c: children(p)) {
+            preorderSubtree(c, snapshot);
+        }
+    }
+
+    /**
+     * Returns a preordered iterable collection of all positions of the tree
+     * @return iterable
+     */
+    public Iterable<Position<E>> preorder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if(isEmpty()) return snapshot;
+        preorderSubtree(root(), snapshot);
+        return snapshot;
+    }
+
+
 }
 
