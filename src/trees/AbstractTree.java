@@ -81,6 +81,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
 
     // -- Traversal algorithms --
+    // - Preorder traversal -
     /**
      * Utility method. Adds positions of the subtree rooted at Position p to the given snapshot
      * Preorder: Add position p before exploring subtrees
@@ -107,6 +108,30 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return snapshot;
     }
 
+    // - End of preorder traversal -
+
+    // - Postorder traversal -
+    /**
+     * Utility method. Adds positions of the subtree rooted at Position p to the given snapshot
+     * Postorder: Add position p after exploring subtrees
+     */
+    private void postorderSubtree(Position<E> p, List<Position<E>> snapshot) {
+        for(Position<E> c: children(p)) {
+            postorderSubtree(c, snapshot);
+        }
+        snapshot.add(p);
+    }
+
+    /**
+     * Returns a postordered iterable of all positions in the tree
+     * @return iterable
+     */
+    public Iterable<Position<E>> postorder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if(isEmpty()) return snapshot;
+        postorderSubtree(root(), snapshot);
+        return snapshot;
+    }
 
 }
 

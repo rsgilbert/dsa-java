@@ -2,6 +2,8 @@
   <dictionary name="ssenyonjo">
     <words>
       <w>downheap</w>
+      <w>postorder</w>
+      <w>postordered</w>
       <w>upheap</w>
     </words>
   </dictionary>

@@ -31,7 +31,7 @@ public interface PositionalList<E> {
     Position<E> last();
 
     /**
-     * @return the position imediately before Position p or null if p is first
+     * @return the position immediately before Position p or null if p is first
      */
     Position<E> before(Position<E> p) throws IllegalArgumentException;
 
