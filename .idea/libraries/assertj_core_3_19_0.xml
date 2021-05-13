@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="assertj-core-3.19.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/Programs/assertj-core-3.19.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/byte-buddy-1.11.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/hamcrest-2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/junit-4.13.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/mockito-core-3.10.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/objenesis-3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

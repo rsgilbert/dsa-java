@@ -56,7 +56,7 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
      * @param low lower index bound
      * @return Smallest index for range table[low..high] inclusive storing an entry with a key
      * greater than or equal to k (or else index high+1, by convention)
-     * @para high higher index bound
+     * @param high higher index bound
      */
     private int findIndex(K key, int low, int high) {
         if (high < low)
@@ -160,8 +160,8 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
     public V remove(K key) {
         int idx = findIndex(key);
         if (idx == size() || compare(key, table.get(idx)) != 0)
-            return table.remove(idx).getValue();
-        return null;
+            return null;
+        return table.remove(idx).getValue();
     }
 
     // - end of map functions -
@@ -228,7 +228,6 @@ public class SortedTableMap<K, V> extends AbstractSortedMap<K, V> {
      */
     public Entry<K,V> higherEntry(K key) {
         int ceilIdx = findIndex(key);
-        Entry<K,V> ceilEntry = safeEntry(ceilIdx);
         if(ceilIdx < size() && table.get(ceilIdx).getKey().equals(key))
             ceilIdx ++;
         return safeEntry(ceilIdx);

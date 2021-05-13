@@ -7,7 +7,8 @@ import java.util.Comparator;
 /**
  * AbstractSortedMap interface
  */
-public abstract class AbstractSortedMap<K,V> extends AbstractMap<K,V> {
+public abstract class AbstractSortedMap<K,V> extends AbstractMap<K,V> implements SortedMap<K,V>
+{
     /**
      * Comparator defining the ordering of keys in the sorted map
      */
