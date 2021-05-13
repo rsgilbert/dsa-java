@@ -4,7 +4,6 @@ package trees;
 import util.Position;
 
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * An abstract class providing some functionality of the Tree interface
@@ -25,7 +24,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
 
     @Override
     public boolean isRoot(Position<E> p) {
-        return p == root();
+        return root().equals(p);
     }
 
     @Override
@@ -44,7 +43,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
     public int depth(Position<E> p) {
         int depth = 0;
         Position<E> walker = p;
-        while (walker != null) {
+        while (walker != root()) {
             depth++;
             walker = parent(walker);
         }
@@ -67,6 +66,10 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return h;
     }
 
+    @Override
+    public int height() {
+        return height(root());
+    }
     // -- nested ElementIterator class --
 
     /**

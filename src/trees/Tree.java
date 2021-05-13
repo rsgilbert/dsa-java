@@ -26,5 +26,6 @@ public interface Tree<E> extends Iterable<E> {
     Iterable<Position<E>> positions();
     int depth(Position<E> p);
     int height(Position<E> p);
+    int height();
 
 }
