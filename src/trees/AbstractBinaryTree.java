@@ -3,6 +3,7 @@ package trees;
 
 import util.Position;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -47,4 +48,43 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
         return children;
     }
 
+    /**
+     * Inorder traversal
+     * Visit all the subtrees on the left child, visit child, then visit all subtrees on the
+     * right child
+     * Applicable only to binary trees.
+     * @param p position
+     * @param snapshot list
+     */
+    public void inorderSubtree(Position<E> p, List<Position<E>> snapshot) {
+        Position<E> left = left(p);
+        Position<E> right = right(p);
+        if(left != null)
+            inorderSubtree(left, snapshot);
+        snapshot.add(p);
+        if(right != null)
+            inorderSubtree(right,snapshot);
+    }
+
+    /**
+     * Get iterable of all tree positions by performing inorder traversal on the tree
+     * @return iterable
+     */
+    public Iterable<Position<E>> inorder() {
+        List<Position<E>> snapshot = new ArrayList<>();
+        if(isEmpty()) return snapshot;
+        inorderSubtree(root(), snapshot);
+        return snapshot;
+    }
+
+    /**
+     * Returns an iterable of all positions in the binary tree
+     * Since we usually want the positions ordered using inorder traversal,
+     * we make the function default to using inorder method
+     * @return iterable
+     */
+    @Override
+    public Iterable<Position<E>> positions() {
+        return inorder();
+    }
 }
