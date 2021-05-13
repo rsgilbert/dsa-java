@@ -143,8 +143,36 @@ public class TreeTest {
         assertThat(tree.height(rightLeaf)).isEqualTo(0);
     }
 
+    // -- traversal algorithms --
+    @Test
+    public void preorder() {
+        List<Position<Integer>> list = Helpers.toList(tree.preorder());
+        assertThat(list.get(0).getElement()).isEqualTo(2);
+        assertThat(list.get(1).getElement()).isEqualTo(1);
+        assertThat(list.get(2).getElement()).isEqualTo(-4);
+        assertThat(list.get(3).getElement()).isEqualTo(5);
+        assertThat(list.get(4).getElement()).isEqualTo(10);
+    }
 
+    @Test
+    public void postorder() {
+        List<Position<Integer>> list = Helpers.toList(tree.postorder());
+        assertThat(list.get(0).getElement()).isEqualTo(-4);
+        assertThat(list.get(1).getElement()).isEqualTo(1);
+        assertThat(list.get(2).getElement()).isEqualTo(10);
+        assertThat(list.get(3).getElement()).isEqualTo(5);
+        assertThat(list.get(4).getElement()).isEqualTo(2);
+    }
 
+    @Test
+    public void breadthfirst() {
+        List<Position<Integer>> list = Helpers.toList(tree.breadthfirst());
+        assertThat(list.get(0).getElement()).isEqualTo(2);
+        assertThat(list.get(1).getElement()).isEqualTo(1);
+        assertThat(list.get(2).getElement()).isEqualTo(5);
+        assertThat(list.get(3).getElement()).isEqualTo(-4);
+        assertThat(list.get(4).getElement()).isEqualTo(10);
+    }
 
 
 }
