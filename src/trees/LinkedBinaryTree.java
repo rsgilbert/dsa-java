@@ -5,6 +5,13 @@ import util.Position;
 /**
  * Concrete implementation of the Binary Tree ADT using a node-based linked structure
  *
+ * Running time
+ * size, isEmpty : O(1)
+ * root, parent, left, child, sibling, children, numChildren : O(1)
+ * isInternal, isExternal, isRoot : O(1)
+ * addRoot, addLeft, addRight, set, attach, remove : O(1)
+ * depth(p) : O(d_p + 1)
+ * height : O(n)
  * @param <E> type parameter
  */
 public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
