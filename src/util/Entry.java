@@ -1,4 +1,4 @@
-package maps;
+package util;
 
 /**
  * Interface for a key-value pair

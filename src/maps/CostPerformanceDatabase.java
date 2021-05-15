@@ -1,6 +1,6 @@
 package maps;
 
-import java.util.SortedMap;
+import util.Entry;
 
 /**
  * Maintains a database of maximal (cost, performance) pairs

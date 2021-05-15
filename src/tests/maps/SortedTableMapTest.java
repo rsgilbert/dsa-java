@@ -1,18 +1,15 @@
 package tests.maps;
 
 
-import maps.Entry;
-import maps.Map;
+import util.Entry;
 import maps.SortedMap;
 import maps.SortedTableMap;
-import org.assertj.core.util.Streams;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;

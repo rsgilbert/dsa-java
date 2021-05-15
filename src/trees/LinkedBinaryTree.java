@@ -204,7 +204,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     /**
-     * Adds a left child to a position
+     * Adds a left child to a position and return the new left child added
      * @param p position
      * @param e element
      * @return position of created left child
@@ -278,7 +278,10 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
     }
 
     /**
-     * Removes the node at Position p and replaces it with its child, if any
+     * Removes the node at Position p and replaces it with its child, if any.
+     * When the binary tree has two children, we throw an error.
+     * Note that in subclasses of this class, for example TreeMap, the remove functionality in particular
+     * the scenario of removing a node with two children is implemented differently
      * @param p position
      * @return element
      * @throws IllegalArgumentException

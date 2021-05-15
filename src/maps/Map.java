@@ -5,6 +5,8 @@ package maps;
  *
  */
 
+import util.Entry;
+
 /**
  * A formal definition of a Java interface for our version of the map ADT.
  * @param <K> Key

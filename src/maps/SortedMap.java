@@ -1,5 +1,7 @@
 package maps;
 
+import util.Entry;
+
 public interface SortedMap<K,V> extends Map<K,V> {
     Entry<K,V> firstEntry();
     Entry<K,V> lastEntry();

@@ -1,6 +1,7 @@
 package maps;
 
 import priorityqueue.DefaultComparator;
+import util.Entry;
 
 import java.util.Comparator;
 
@@ -46,5 +47,15 @@ public abstract class AbstractSortedMap<K,V> extends AbstractMap<K,V> implements
      */
     public int compare(K k, Entry<K,V> e) {
         return comp.compare(k, e.getKey());
+    }
+
+    /**
+     * Utility for comparing two keys based on the comparator of the sorted map class
+     * @param k1 key1
+     * @param k2 key2
+     * @return an integer representing the comparison result
+     */
+    public int compare(K k1, K k2) {
+        return comp.compare(k1, k2);
     }
 }

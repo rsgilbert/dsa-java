@@ -1,5 +1,7 @@
 package maps;
 
+import util.Entry;
+
 public class TestSortedMap {
     // Test sorted map
     public static void main(String[] args) {

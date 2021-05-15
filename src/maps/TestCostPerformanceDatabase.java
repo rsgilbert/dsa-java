@@ -1,5 +1,7 @@
 package maps;
 
+import util.Entry;
+
 public class TestCostPerformanceDatabase {
     /**
      * Test the implementation of CostPerformanceDatabase class that is
